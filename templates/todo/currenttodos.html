@@ -2,5 +2,22 @@
 
 {% block content %}
     <h1>Current To Dos</h1>
-    <!-- <h2>{{ error }}</h2> -->
+    
+    <ul>
+        {% for todo in todos %}
+            <li>
+                {% if todo.important %}
+                    <strong>
+                {% endif %} 
+                <a href="{% url 'viewToDo' todo.id %}">{{ todo.title }}</a>
+                {% if todo.important %}
+                    </strong>
+                {% endif %}
+                {% if todo.memo %}
+                    - {{ todo.memo }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    
 {% endblock %}
